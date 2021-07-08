@@ -1,0 +1,78 @@
+<% layout('../layouts/boilerplate.ejs') %>
+
+<div class = "column is-three-fifths is-offset-one-fifth" >
+    <h1 class="title is-2 has-text-centered">Edit your item</h1>
+    <form action="/item/<%= item._id %>/edit?_method=PUT" method = 'POST' enctype="multipart/form-data">
+        <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+                <input class="input is-primary" type="text" placeholder="Title" name = "title" id = "title" value = "<%= item.title %>">
+            </div>
+          </div>
+        <div class="field">
+            <label class="label">Contact</label>
+            <div class="control">
+                <input class="input is-primary" type="tel" value = "<%= item.contact %>" placeholder="Contact Details" name = "contact" id = "contact">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Rent/day</label>
+            <div class="control">
+                <input class="input is-primary" type="Number" value = "<%= item.price %>" placeholder="Rent/day" name = "price" id = "price">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Location</label>
+            <div class="control">
+                <input class="input is-primary" type="String" value = "<%= item.location %>" placeholder="Location" name = "location" id = "location">
+            </div>
+        </div>
+        <div class = "field">
+            <div id="file-js-example" class="file has-name">
+                <label class="file-label">
+                  <input class="file-input" type="file" name="image" multiple>
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Choose a file…
+                    </span>
+                  </span>
+                  <span class="file-name">
+                    No file uploaded
+                  </span>
+                </label>
+              </div>              
+        </div>
+        <% for(img of item.Image) { %>
+            <div class = "row mt-1">
+                <div class="col">
+                    <img src="<%= img.edit_thumbnail %>" alt="">
+                </div>
+                <div class="col">
+                    <label class="checkbox">
+                        <input type="checkbox" name = "deleteImages[]" value="<%= img.filename %>">
+                        Delete?
+                    </label>
+                </div>
+            </div>
+        <% } %>
+        <div class="control">
+            <button class="button is-primary">Add</button>
+          </div>
+    </form>
+</div>
+
+<script>
+    const fileInput = document.querySelector('#file-js-example input[type=file]');
+    fileInput.onchange = () => {
+      if (fileInput.files.length > 0) {
+        const fileName = document.querySelector('#file-js-example .file-name');
+        fileName.textContent = fileInput.files[0].name;
+        for(let i=1;i<fileInput.files.length;i++){
+          fileName.textContent += ", " + fileInput.files[i].name;
+        }
+      }
+    }
+</script>

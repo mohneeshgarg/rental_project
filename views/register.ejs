@@ -1,0 +1,33 @@
+<% layout('../layouts/boilerplate.ejs') %>
+<div class = "column is-three-fifths is-offset-one-fifth">
+    <h1 class="title is-2 has-text-centered">Register</h1>
+    <form action="/register" method = 'POST'>
+        <div class="field">
+            <label class="label">Username</label>
+            <div class="control">
+                <input class="input is-primary" type="text" placeholder="Username" name = "username" id = "username">
+            </div>
+          </div>
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+                <input type="text" class="input is-primary" placeholder="Name" name = "name" id = "name">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Contact</label>
+            <div class="control">
+                <input type="tel" class="input is-primary" placeholder="Contact Details" name = "contact" id = "contact">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+                <input type="password" class="input is-danger" placeholder="Password" name = "password" id = "password">
+            </div>
+        </div>
+        <div class="control">
+            <button class="button is-primary">Register</button>
+          </div>
+    </form>
+</div>
